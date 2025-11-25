@@ -1,13 +1,10 @@
-# Face Detection with Streamlit and Save Option
-# Save as app.py and run with: streamlit run app.py
-
 import cv2
 import numpy as np
 from PIL import Image
 import streamlit as st
 import io
 
-st.title("📸 Face Detection App with Save Option")
+st.title("Face Detection App with Save Option")
 
 # Input method: Upload or Webcam
 option = st.radio("Select Input Method:", ("Upload Image", "Use Webcam"))
@@ -21,7 +18,7 @@ if option == "Upload Image":
         img = cv2.imdecode(file_bytes, 1)
 
 elif option == "Use Webcam":
-    st.write("📷 Capture photo from your webcam")
+    st.write("Capture photo from your webcam")
     if st.button("Capture"):
         cap = cv2.VideoCapture(0)
         ret, img = cap.read()
@@ -48,7 +45,7 @@ if img is not None:
     # Save image option
     buf = cv2.imencode(".jpg", img)[1].tobytes()
     st.download_button(
-        label="💾 Save Image",
+        label="Save Image",
         data=buf,
         file_name="face_detected.jpg",
         mime="image/jpeg"
